@@ -1,40 +1,24 @@
-'use client'
-
-import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import Modal from './Modal'
+import SearchBar from './SearchBar'
 
 export default function NavBar() {
-	const [isModalOpen, setIsModalOpen] = useState(false)
-	const openModal = () => setIsModalOpen(true)
-	const closeModal = () => setIsModalOpen(false)
 
 	return (
-		<div className='navbar bg-base-100 shadow-sm bg-primary'>
-			<div>
-				<Image src='/Pokeball.svg' alt='Pokeball' width={35} height={35} />
-			</div>
-			<div className='flex-1'>
-				<a className='btn btn-ghost text-xl'>Poke-dex</a>
-			</div>
-			<div className='flex-none'>
-				<button className='btn rounded-full' onClick={openModal}>
-					#
-				</button>
-				{isModalOpen && (
-					<dialog open className='modal'>
-						<div className='modal-box'>
-							<h3 className='font-bold text-lg'>Hello!</h3>
-							<p className='py-4'>
-								Press ESC key or click the button below to close
-							</p>
-							<div className='modal-action'>
-								<button className='btn' onClick={closeModal}>
-									Close
-								</button>
-							</div>
-						</div>
-					</dialog>
-				)}
+		<div>
+			<div className='navbar bg-base-100 bg-primary border-none'>
+				<div>
+					<Link href="/" className="flex items-center gap-3 w-fit hover:text-gray-700 transition-colors">
+						<Image src='/Pokeball.svg' alt='Pokeball' width={35} height={35} className="hover:rotate-180 transition-transform duration-500" />
+						<span className="text-2xl font-bold text-white">Poke-dex</span>
+					</Link>
+				</div>
+				<div className='flex-1'></div>
+				<SearchBar></SearchBar>
+				<div className='flex-none'>
+					<Modal></Modal>
+				</div>
 			</div>
 		</div>
 	)
